@@ -1,0 +1,133 @@
+/* Container */
+.container {
+    max-width: 900px;
+    margin: 1rem auto;
+    padding: 0 1rem;
+}
+
+/* Search bar */
+.search-bar {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.search-bar input[type="text"] {
+    padding: 0.4rem;
+    width: 55%;
+    font-size: 0.85rem;
+    border: 1px solid #ccc;
+    border-radius: 4px 0 0 4px;
+}
+
+.search-bar button {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+}
+
+/* Book entry */
+.book-entry {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    background-color: #f3f3f3;
+    border-radius: 6px;
+    padding: 0.5rem 0.8rem;
+    margin-bottom: 0.8rem;
+    font-size: 0.85rem;
+    overflow: hidden;
+}
+
+/* Thumbnail */
+.book-thumbnail img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+/* Info */
+.book-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.book-info span {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #222;
+}
+
+.book-info h5 {
+    margin: 0.2rem 0 0;
+    color: #555;
+    font-size: 0.8rem;
+}
+
+/* Audio & download */
+audio {
+    width: 160px;
+    height: 24px;
+    margin-left: auto;
+}
+
+.download-btn {
+    margin-left: 0.5rem;
+    background-color: #28a745;
+    color: white;
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.75rem;
+    white-space: nowrap;
+}
+
+.download-btn:hover {
+    background-color: #218838;
+}
+
+/* Disable responsive stacking */
+@media (max-width: 600px) {
+    .book-entry {
+        flex-wrap: nowrap;
+        font-size: 0.75rem;
+    }
+
+    .book-info span {
+        font-size: 0.8rem;
+    }
+    audio {
+        width: 250px;
+        height: 45px;
+        padding: 6px 0;
+        transform: scaleY(1.4);
+    }
+    .audio-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+        background-color: #f0f0f0;
+        border-radius: 6px;
+        margin-left: auto;
+        margin-right: 0;
+        height: 60px;
+    }
+    
+    .audio-wrapper audio {
+        width: 240px;
+        transform: scaleY(3.4); /* visually increases vertical size */
+        transform-origin: center;
+    }
+
+    .download-btn {
+        font-size: 0.7rem;
+        padding: 0.2rem 0.5rem;
+    }
+}
+

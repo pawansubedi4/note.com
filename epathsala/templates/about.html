@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>About Us - The Creators</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary: #4a6bff;
+            --secondary: #ff7e5f;
+            --dark: #2d3748;
+            --light: #f7fafc;
+            --success: #48bb78;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        /* Header Styles */
+        header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 15px 50px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        /* Dot Logo Styles */
+        .header-dot-logo {
+            width: 120px;
+            height: 50px;
+            display: grid;
+            grid-template-columns: repeat(24, 1fr);
+            grid-template-rows: repeat(5, 1fr);
+            gap: 3px;
+            cursor: pointer;
+            margin-right: 20px;
+        }
+
+        .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .dot.blue {
+            background-color: var(--primary);
+            box-shadow: 0 0 5px rgba(74, 107, 255, 0.7);
+        }
+
+        .dot.orange {
+            background-color: var(--secondary);
+            box-shadow: 0 0 5px rgba(255, 126, 95, 0.7);
+        }
+
+        .header-dot-logo:hover .dot {
+            transform: translate(calc(var(--tx) * 5px),
+                    calc(var(--ty) * 5px));
+            opacity: 0.8;
+        }
+
+        /* Header Text Styles */
+        .header-text {
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        .main-heading {
+            font-size: 2rem;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+        }
+
+        .tagline {
+            font-style: italic;
+            color: var(--dark);
+            font-size: 1rem;
+        }
+
+        /* Note Section */
+        .note {
+            background-color: rgba(74, 107, 255, 0.1);
+            padding: 15px;
+            border-left: 4px solid var(--primary);
+            margin: 20px auto;
+            max-width: 800px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        /* Profile Sections */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+
+        .profiles {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            margin: 60px 0;
+        }
+
+        .profile {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .profile::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(74, 107, 255, 0.1) 0%, rgba(255, 126, 95, 0.05) 100%);
+            z-index: -1;
+            transform: rotate(45deg);
+        }
+
+        .profile:hover {
+            transform: translateY(-10px) scale(1.02);
+        }
+
+        .profile-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--primary);
+            margin-bottom: 25px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 20px rgba(74, 107, 255, 0.3);
+        }
+
+        .profile-img:hover {
+            border-color: var(--secondary);
+            transform: scale(1.05) rotate(5deg);
+            box-shadow: 0 12px 25px rgba(255, 126, 95, 0.4);
+        }
+
+        .profile h2 {
+            color: var(--primary);
+            margin: 15px 0;
+            cursor: pointer;
+            font-size: 1.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .profile h2:hover {
+            color: var(--secondary);
+            letter-spacing: 1px;
+        }
+
+        .profile h3 {
+            color: var(--secondary);
+            margin-bottom: 25px;
+            font-weight: 600;
+            font-size: 1.3rem;
+        }
+
+        .profile-info {
+            text-align: left;
+            margin: 25px 0;
+        }
+
+        .profile-info p {
+            margin: 12px 0;
+            color: var(--dark);
+            font-size: 1rem;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .profile-info p::before {
+            content: '•';
+            color: var(--primary);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .social-links a {
+            color: var(--dark);
+            font-size: 20px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-3px);
+        }
+
+        .fa-github:hover {
+            color: #333;
+        }
+
+        .fa-linkedin:hover {
+            color: #0077b5;
+        }
+
+        .fa-twitter:hover {
+            color: #1da1f2;
+        }
+
+        .fa-facebook:hover {
+            color: #1877f2;
+        }
+
+        .fa-instagram:hover {
+            background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .fa-tiktok:hover {
+            color: #000;
+            text-shadow: 0 0 2px #25f4ee, 0 0 2px #fe2c55;
+        }
+
+        .fa-envelope:hover {
+            color: #d44638;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                padding: 15px 20px;
+            }
+
+            .header-dot-logo {
+                margin: 0 auto 15px;
+            }
+
+            .profiles {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo-container">
+            <div class="header-dot-logo" onclick="window.location.href='https://note.com'">
+                <!-- Letter N -->
+                <div class="dot blue" style="grid-area: 1/1; --tx: -1; --ty: -1;"></div>
+                <div class="dot blue" style="grid-area: 2/1; --tx: -1; --ty: -1;"></div>
+                <div class="dot blue" style="grid-area: 3/1; --tx: -2; --ty: 0;"></div>
+                <div class="dot blue" style="grid-area: 4/1; --tx: -1; --ty: 1;"></div>
+                <div class="dot blue" style="grid-area: 2/2; --tx: 0; --ty: -2;"></div>
+                <div class="dot blue" style="grid-area: 3/3; --tx: 0; --ty: 2;"></div>
+                <div class="dot blue" style="grid-area: 2/4; --tx: 1; --ty: -1;"></div>
+                <div class="dot blue" style="grid-area: 3/4; --tx: 2; --ty: 0;"></div>
+                <div class="dot blue" style="grid-area: 4/4; --tx: 1; --ty: 1;"></div>
+                <div class="dot blue" style="grid-area: 1/4; --tx: 1; --ty: 1;"></div>
+                <div class="dot blue" style="grid-area: 5/4; --tx: 1; --ty: 1;"></div>
+                <div class="dot blue" style="grid-area: 5/1; --tx: 1; --ty: 1;"></div>
+                <!-- Letter O -->
+                <div class="dot blue" style="grid-area: 1/6; --tx: -1; --ty: -1;"></div>
+                <div class="dot blue" style="grid-area: 2/6; --tx: -1; --ty: -1;"></div>
+                <div class="dot blue" style="grid-area: 1/7; --tx: 0; --ty: -2;"></div>
+                <div class="dot blue" style="grid-area: 1/8; --tx: 0; --ty: -2;"></div>
+                <div class="dot blue" style="grid-area: 2/8; --tx: 1; --ty: -1;"></div>
+                <div class="dot blue" style="grid-area: 3/6; --tx: -2; --ty: 0;"></div>
+                <div class="dot blue" style="grid-area: 3/8; --tx: 2; --ty: 0;"></div>
+                <div class="dot blue" style="grid-area: 4/6; --tx: -1; --ty: 1;"></div>
+                <div class="dot blue" style="grid-area: 5/7; --tx: 0; --ty: 2;"></div>
+                <div class="dot blue" style="grid-area: 4/8; --tx: 1; --ty: 1;"></div>
+                <div class="dot blue" style="grid-area: 5/6; --tx: 0; --ty: 2;"></div>
+                <div class="dot blue" style="grid-area: 5/8; --tx: 1; --ty: 1;"></div>
+                <!-- Letter T -->
+                <div class="dot blue" style="grid-area: 1/10; --tx: -1; --ty: -1;"></div>
+                <div class="dot blue" style="grid-area: 1/11; --tx: 0; --ty: -2;"></div>
+                <div class="dot blue" style="grid-area: 1/12; --tx: 1; --ty: -1;"></div>
+                <div class="dot blue" style="grid-area: 2/11; --tx: 0; --ty: 0;"></div>
+                <div class="dot blue" style="grid-area: 3/11; --tx: 0; --ty: 1;"></div>
+                <div class="dot blue" style="grid-area: 4/11; --tx: 0; --ty: 2;"></div>
+                <div class="dot blue" style="grid-area: 5/11; --tx: 0; --ty: 2;"></div>
+                <!-- Letter E -->
+                <div class="dot blue" style="grid-area: 1/14; --tx: -1; --ty: -1;"></div>
+                <div class="dot blue" style="grid-area: 1/15; --tx: 0; --ty: -2;"></div>
+                <div class="dot blue" style="grid-area: 1/16; --tx: 1; --ty: -1;"></div>
+                <div class="dot blue" style="grid-area: 4/14; --tx: 0; --ty: -2;"></div>
+                <div class="dot blue" style="grid-area: 2/14; --tx: 1; --ty: -1;"></div>
+                <div class="dot blue" style="grid-area: 3/14; --tx: -2; --ty: 0;"></div>
+                <div class="dot blue" style="grid-area: 3/15; --tx: 0; --ty: 0;"></div>
+                <div class="dot blue" style="grid-area: 5/14; --tx: -1; --ty: 1;"></div>
+                <div class="dot blue" style="grid-area: 5/15; --tx: 0; --ty: 2;"></div>
+                <div class="dot blue" style="grid-area: 5/16; --tx: 1; --ty: 1;"></div>
+                <!-- Letter S -->
+                <div class="dot blue" style="grid-area: 1/18; --tx: -1; --ty: -1;"></div>
+                <div class="dot blue" style="grid-area: 1/19; --tx: 0; --ty: -2;"></div>
+                <div class="dot blue" style="grid-area: 1/20; --tx: 1; --ty: -1;"></div>
+                <div class="dot blue" style="grid-area: 2/18; --tx: 1; --ty: -1;"></div>
+                <div class="dot blue" style="grid-area: 3/18; --tx: -2; --ty: 0;"></div>
+                <div class="dot blue" style="grid-area: 3/19; --tx: 0; --ty: 0;"></div>
+                <div class="dot blue" style="grid-area: 3/20; --tx: 2; --ty: 0;"></div>
+                <div class="dot blue" style="grid-area: 4/20; --tx: -1; --ty: 1;"></div>
+                <div class="dot blue" style="grid-area: 5/18; --tx: -1; --ty: 1;"></div>
+                <div class="dot blue" style="grid-area: 5/19; --tx: 0; --ty: 2;"></div>
+                <div class="dot blue" style="grid-area: 5/20; --tx: 1; --ty: 1;"></div>
+                <!-- Dot -->
+                <div class="dot orange" style="grid-area: 3/22; --tx: 0; --ty: 0;"></div>
+                <div class="dot orange" style="grid-area: 4/22; --tx: 0; --ty: 0;"></div>
+                <!-- Letter C -->
+                <div class="dot orange" style="grid-area: 2/24; --tx: -1; --ty: -1;"></div>
+                <div class="dot orange" style="grid-area: 2/25; --tx: 0; --ty: -2;"></div>
+                <div class="dot orange" style="grid-area: 2/26; --tx: -2; --ty: 0;"></div>
+                <div class="dot orange" style="grid-area: 3/24; --tx: 0; --ty: -2;"></div>
+                <div class="dot orange" style="grid-area: 4/24; --tx: -2; --ty: 0;"></div>
+                <div class="dot orange" style="grid-area: 5/24; --tx: -1; --ty: 1;"></div>
+                <div class="dot orange" style="grid-area: 5/25; --tx: 0; --ty: 2;"></div>
+                <div class="dot orange" style="grid-area: 5/26; --tx: 0; --ty: 2;"></div>
+                <!-- Letter O -->
+                <div class="dot orange" style="grid-area: 2/29; --tx: -1; --ty: -1;"></div>
+                <div class="dot orange" style="grid-area: 2/30; --tx: 0; --ty: -2;"></div>
+                <div class="dot orange" style="grid-area: 2/31; --tx: 1; --ty: -1;"></div>
+                <div class="dot orange" style="grid-area: 3/29; --tx: -2; --ty: 0;"></div>
+                <div class="dot orange" style="grid-area: 3/31; --tx: 1; --ty: -1;"></div>
+                <div class="dot orange" style="grid-area: 4/29; --tx: -2; --ty: 0;"></div>
+                <div class="dot orange" style="grid-area: 4/31; --tx: 2; --ty: 0;"></div>
+                <div class="dot orange" style="grid-area: 5/29; --tx: -1; --ty: 1;"></div>
+                <div class="dot orange" style="grid-area: 5/30; --tx: 0; --ty: 2;"></div>
+                <div class="dot orange" style="grid-area: 5/31; --tx: 1; --ty: 1;"></div>
+                <!-- Letter M -->
+                <div class="dot orange" style="grid-area: 2/33; --tx: -1; --ty: -1;"></div>
+                <div class="dot orange" style="grid-area: 3/33; --tx: -2; --ty: 0;"></div>
+                <div class="dot orange" style="grid-area: 4/33; --tx: -1; --ty: 1;"></div>
+                <div class="dot orange" style="grid-area: 3/34; --tx: 0; --ty: -2;"></div>
+                <div class="dot orange" style="grid-area: 4/35; --tx: 0; --ty: 0;"></div>
+                <div class="dot orange" style="grid-area: 3/36; --tx: 0; --ty: 2;"></div>
+                <div class="dot orange" style="grid-area: 2/37; --tx: 1; --ty: -1;"></div>
+                <div class="dot orange" style="grid-area: 5/33; --tx: 2; --ty: 0;"></div>
+                <div class="dot orange" style="grid-area: 3/37; --tx: 1; --ty: 1;"></div>
+                <div class="dot orange" style="grid-area: 4/37; --tx: 1; --ty: 1;"></div>
+                <div class="dot orange" style="grid-area: 5/37; --tx: 1; --ty: 1;"></div>
+            </div>
+            <br>
+
+        </div>
+    </header>
+    <div class="header-text">
+        <h1 class="main-heading">THE CREATIVE MINDS</h1>
+        <p class="tagline">Innovation meets passion in every line of code</p>
+    </div>
+
+    <div class="note">
+        <strong>Note:</strong> We're constantly evolving and learning new technologies to bring you the best digital
+        experiences.
+        Feel free to connect with us for collaborations or just to say hello!
+    </div>
+
+    <div class="container">
+        <div class="profiles">
+            <div class="profile">
+                <a href="https://example.com/aayush-portfolio" target="_blank">
+                    <img src="media/aayush.jpeg.png" alt="Aayush Dhakal" class="profile-img">
+                </a>
+                <a href="https://example.com/aayush-portfolio" target="_blank">
+                    <h2>Aayush Dhakal</h2>
+                </a>
+                <h3>Frontend Design</h3>
+
+                <div class="profile-info">
+                    <p><strong>Age:</strong> 20 years young</p>
+                    <p><strong>Education:</strong> BSC (Hons) Applied Management at BPP University</p>
+                    <p><strong>Location:</strong> London, UK</p>
+                    <p><strong>Specialties:</strong> Html,Css,AI </p>
+                    <p><strong>Philosophy:</strong> "Design isn't just what it looks like, it's how it works"</p>
+                </div>
+
+                <div class="social-links">
+                    <a href="https://github.com/aayush" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://linkedin.com/in/aayush" target="_blank" title="LinkedIn"><i
+                            class="fab fa-linkedin"></i></a>
+                    <a href="https://twitter.com/aayush" target="_blank" title="Twitter"><i
+                            class="fab fa-twitter"></i></a>
+                    <a href="https://facebook.com/aayush" target="_blank" title="Facebook"><i
+                            class="fab fa-facebook"></i></a>
+                    <a href="https://instagram.com/aayush" target="_blank" title="Instagram"><i
+                            class="fab fa-instagram"></i></a>
+                    <a href="https://tiktok.com/@aayush" target="_blank" title="TikTok"><i
+                            class="fab fa-tiktok"></i></a>
+                    <a href="mailto:aayush@example.com" title="Email"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+
+            <div class="profile">
+                <a href="https://example.com/pawan-portfolio" target="_blank">
+                    <img src="media/pawan.jpg" alt="Pawan Subedi" class="profile-img">
+                </a>
+                <a href="#" target="_blank">
+                    <h2>Pawan Subedi</h2>
+                </a>
+                <h3>Backend Master </h3>
+
+                <div class="profile-info">
+                    <p><strong>Age:</strong> 20 years young</p>
+                    <p><strong>Education:</strong> BIM at Shanker Dev Campus</p>
+                    <p><strong>Location:</strong> Kathmandu, Nepal</p>
+                    <p><strong>Specialties:</strong> Node.js, Python, Database Architecture, API</p>
+                    <p><strong>Philosophy:</strong> "First solve the problem, then write the code"</p>
+                </div>
+
+                <div class="social-links">
+                    <a href="https://github.com/pawansubedi4" target="_blank" title="GitHub"><i
+                            class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/pawan-subedi-232a68319/" target="_blank" title="LinkedIn"><i
+                            class="fab fa-linkedin"></i></a>
+                    <a href="#" target="_blank" title="Twitter"><i
+                            class="fab fa-twitter"></i></a>
+                    <a href="https://www.facebook.com/pawan.subedi.9066" target="_blank" title="Facebook"><i
+                            class="fab fa-facebook"></i></a>
+                    <a href="https://www.instagram.com/pawansubedi42/" target="_blank" title="Instagram"><i
+                            class="fab fa-instagram"></i></a>
+                    <a href="https://www.tiktok.com/@pawansubedi775?lang=en" target="_blank" title="TikTok"><i
+                            class="fab fa-tiktok"></i></a>
+                    <a href="mailto:pawan.13pro@gmail.com" title="Email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const dots = document.querySelectorAll('.dot');
+            dots.forEach(dot => {
+                // Store original position
+                const gridArea = dot.style.gridArea;
+                dot.dataset.originalPosition = gridArea;
+
+                // Set random movement direction if not already set
+                if (!dot.style.getPropertyValue('--tx')) {
+                    dot.style.setProperty('--tx', (Math.random() * 4 - 2).toFixed(1));
+                    dot.style.setProperty('--ty', (Math.random() * 4 - 2).toFixed(1));
+                }
+            });
+
+            // Reset to original position when not hovering
+            const logo = document.querySelector('.header-dot-logo');
+            logo.addEventListener('mouseleave', function () {
+                const dots = this.querySelectorAll('.dot');
+                dots.forEach(dot => {
+                    dot.style.gridArea = dot.dataset.originalPosition;
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

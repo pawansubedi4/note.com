@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>eSewa Payment</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f0f4f8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    form {
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 18px;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    input[type="submit"] {
+      background-color: #4CAF50;
+      color: white;
+      padding: 12px 25px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+
+    input[type="hidden"] {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <form action="https://rc-epay.esewa.com.np/api/epay/main/v2/form" method="POST">
+    <input type="hidden" id="amount" name="amount" value="{{amt}}" required>
+    <input type="hidden" id="tax_amount" name="tax_amount" value ="{{txamt}}" required>
+    <input type="hidden" id="total_amount" name="total_amount" value="{{tAmt}}" required>
+    <input type="hidden" id="transaction_uuid" name="transaction_uuid" value="{{pid}}" required>
+    <input type="hidden" id="product_code" name="product_code" value ="EPAYTEST" required>
+    <input type="hidden" id="product_service_charge" name="product_service_charge" value="0" required>
+    <input type="hidden" id="product_delivery_charge" name="product_delivery_charge" value="0" required>
+    <input type="hidden" id="success_url" name="success_url" value="{{su}}" required>
+    <input type="hidden" id="failure_url" name="failure_url" value="{{fu}}" required>
+    <input type="hidden" id="signed_field_names" name="signed_field_names" value="total_amount,transaction_uuid,product_code" required>
+    <input type="hidden" id="signature" name="signature" value="{{sign}}" required>
+    
+    <h1>After paying wait Until — you will be redirected to a success message<br>
+      If not working after paying too. contact us by mentioning your user name.
+    </h1>
+    <input value="Pay by eSewa" type="submit">
+  </form>
+</body>
+</html>

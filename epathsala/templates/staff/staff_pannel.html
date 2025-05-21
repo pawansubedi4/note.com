@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>eBook List</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <style>
+    :root {
+      --primary: #4a6bff;
+      --secondary: #ff7e5f;
+      --dark: #2d3748;
+      --light: #f7fafc;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background-color: #f5f7fa;
+      color: var(--dark);
+    }
+
+    header {
+      background: white;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--primary);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+    }
+
+    .logo span {
+      color: var(--secondary);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--dark);
+      font-weight: 500;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--primary);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .search-bar {
+      margin: 20px 0;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .search-bar input {
+      padding: 10px;
+      width: 60%;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .search-bar button {
+      padding: 10px 15px;
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    h1 {
+      margin: 20px 0;
+      text-align: center;
+      color: var(--dark);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    }
+
+    th, td {
+      padding: 15px;
+      text-align: left;
+      border-bottom: 1px solid #eee;
+    }
+
+    th {
+      background-color: var(--primary);
+      color: white;
+    }
+
+    td h5 {
+      margin: 0;
+      font-weight: normal;
+      color: #555;
+    }
+
+    td strong {
+      color: var(--dark);
+    }
+
+    .book-actions a {
+      display: inline-block;
+      margin-right: 10px;
+      padding: 8px 12px;
+      background-color: var(--primary);
+      color: white;
+      border-radius: 5px;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .book-actions a:hover {
+      background-color: #3a5bef;
+    }
+
+    @media (max-width: 768px) {
+      .search-bar input {
+        width: 100%;
+      }
+
+      .nav-links {
+        gap: 15px;
+      }
+
+      table, thead, tbody, th, td, tr {
+        display: block;
+      }
+
+      thead {
+        display: none;
+      }
+
+      tr {
+        margin-bottom: 20px;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+        padding: 10px;
+      }
+
+      td {
+        padding: 10px;
+        border: none;
+      }
+
+      .book-actions a {
+        display: block;
+        margin-bottom: 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <nav class="navbar">
+        <a class="logo">Notes<span>.com</span></a>
+        <div class="nav-links">
+          <a href="/home">Home</a>
+          <a href="/upload_unit">Upload Units</a>
+          <a href="/upload_exam">Upload Exam</a>
+          <a href="/upload_video">Upload Video</a>
+          <a href="/view_exam">View Exam</a>
+          <a href="/view_video">View Video</a>
+          <a href="/views_contact">View Contact US</a>
+          <a href="/user_view">User View</a>
+
+          <form method="post" action="{% url 'epathsala:logout' %}" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit"
+              style="background:none; border:none; color:blue; text-decoration:underline; cursor:pointer;">
+              Logout
+            </button>
+          </form>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container">
+    <form class="search-bar">
+      <input type="text" placeholder="Search for Notes...but search class or subject" name="search" />
+      <button type="submit"><i class="fas fa-search"></i></button>
+    </form>
+
+    <h1>All Units</h1>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Class</th>
+          <th>Subject</th>
+          <th>Publisher</th>
+          <th>Unit</th>
+          <th>Notes pdf</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for ebook in units %}
+        <tr>
+          <td><strong>{{ ebook.class1 }}</strong></td>
+          <td><h5>{{ ebook.sub }}</h5></td>
+          <td><h5>{{ ebook.pub }}</h5></td>
+          <td><h5>{{ ebook.unit_num }}</h5></td>
+          <td class="book-actions">
+            <a href="{{ ebook.unit_pdf.url }}" target="_blank"><i class="fas fa-eye"></i> Read</a>
+            <a href="{{ ebook.unit_pdf.url }}" download><i class="fas fa-download"></i> Download</a>
+          </td>
+          <td>
+            <a href="{% url 'epathsala:edit_unit' ebook.id %}" class="class-btn">Edit</a>
+            <a href="{% url 'epathsala:del_unit' ebook.id %}" class="class-btn">Delete</a>
+          </td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="5" style="text-align:center;">No data available</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</body>
+
+</html>

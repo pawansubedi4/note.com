@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload eBook</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #e8f0fe; /* Light blue background */
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .upload-card {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 450px;
+            transition: all 0.3s ease;
+        }
+        .upload-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        h1 {
+            text-align: center;
+            color: #0056b3; /* Dark blue text */
+            font-size: 26px;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        input[type="file"] {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border: 2px solid #007bff; /* Blue border */
+            border-radius: 8px;
+            background-color: #f0f8ff; /* Light blue background for input */
+            cursor: pointer;
+            margin-bottom: 10px;
+            transition: all 0.3s ease;
+        }
+        input[type="file"]:hover {
+            border-color: #0056b3; /* Darker blue border on hover */
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #007bff; /* Blue button */
+            border: none;
+            color: white;
+            font-size: 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        button:hover {
+            background-color: #0056b3; /* Darker blue button on hover */
+        }
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .footer a {
+            text-decoration: none;
+            color: #007bff; /* Blue link */
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+        .footer a:hover {
+            color: #0056b3; /* Darker blue link on hover */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="upload-card">
+        <h1>Upload Units</h1>
+        <form method="POST" enctype="multipart/form-data" onsubmit="return checkPDF()">
+            {% csrf_token %}
+            <div class="form-group">
+                {{ form.as_p }}
+            </div>
+            <button type="submit">Upload Unit</button>
+        </form>
+    </div>
+    <script>
+        function checkPDF() {
+          const fileInput = document.querySelector('input[name="pdf"]');
+          if (!fileInput || !fileInput.files.length) return true; // No file selected
+      
+          const file = fileInput.files[0];
+          const fileName = file.name.toLowerCase();
+      
+          if (!fileName.endsWith('.pdf')) {
+            alert("Only PDF files are allowed. Please upload a .pdf file.");
+            fileInput.value = ''; // Clear the invalid file
+            return false; // Stop form submission
+          }
+      
+          return true; // Allow submission
+        }
+      </script>
+
+</body>
+</html>
