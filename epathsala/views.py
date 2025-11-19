@@ -13,9 +13,9 @@ def index(request):
     
 @login_required
 def home(request):
-    user = request.user
-    user.is_subscribed = True
-    user.save()
+    # user = request.user
+    # user.is_subscribed = True
+    # user.save()
     if request.user.staff_status:
         datas=unit.objects.all()
         data2=exam.objects.all()
