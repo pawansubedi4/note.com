@@ -26,6 +26,11 @@ SECRET_KEY = 'django-insecure-v#i3+fyj4ehv&*x300f37)z74mqh^b4s#zr9ijn@&^giz6@x85
 DEBUG = True
 
 ALLOWED_HOSTS = ["note-com-pawan.onrender.com"]
+# main/settings.py
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://note-com-pawan.onrender.com"
+]
 
 
 # Application definition
