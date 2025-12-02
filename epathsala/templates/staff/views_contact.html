@@ -216,14 +216,12 @@
           <a href="/upload_video">Upload Video</a>
           <a href="/view_exam">View Exam</a>
           <a href="/view_video">View Video</a>
-          <a href="/views_contact">View Contact US</a>
-
           <form method="post" action="{% url 'epathsala:logout' %}" style="display:inline;">
-            {% csrf_token %}
-            <button type="submit"
-              style="background:none; border:none; color:blue; text-decoration:underline; cursor:pointer;">
-              Logout
-            </button>
+              {% csrf_token %}
+              <button type="submit"
+                  style="background:none; border:none; color:black; text-decoration:none; cursor:pointer; font-size:18px;">
+                  Logout
+              </button>
           </form>
         </div>
       </nav>

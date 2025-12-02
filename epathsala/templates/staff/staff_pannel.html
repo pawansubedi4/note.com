@@ -210,7 +210,6 @@
       <nav class="navbar">
         <a class="logo">Notes<span>.com</span></a>
         <div class="nav-links">
-          <a href="/home">Home</a>
           <a href="/upload_unit">Upload Units</a>
           <a href="/upload_exam">Upload Exam</a>
           <a href="/upload_video">Upload Video</a>
@@ -218,13 +217,12 @@
           <a href="/view_video">View Video</a>
           <a href="/views_contact">View Contact US</a>
           <a href="/user_view">User View</a>
-
           <form method="post" action="{% url 'epathsala:logout' %}" style="display:inline;">
-            {% csrf_token %}
-            <button type="submit"
-              style="background:none; border:none; color:blue; text-decoration:underline; cursor:pointer;">
-              Logout
-            </button>
+              {% csrf_token %}
+              <button type="submit"
+                  style="background:none; border:none; color:black; text-decoration:none; cursor:pointer; font-size:18px;">
+                  Logout
+              </button>
           </form>
         </div>
       </nav>
